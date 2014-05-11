@@ -100,7 +100,7 @@ private void DrawTimer_Tick(object sender, EventArgs e)
 
         }
         
-Со помош на тајмерот Draw се исцртуваат сите ојекти од класата при тоа користам променлива points која ми ги чува освоените поени, и подоцна се прикажува во лабелата lbNumPoints. За потребите на тајмерот имам имплементирано свои функции како Enabled:
+Со помош на тајмерот Draw се исцртуваат сите ојекти од класата при тоа користам променлива points која ми ги чува освоените поени, и подоцна се прикажува во лабелата lbNumPoints. За потребите на тајмерот имам имплементирано свои функции како Enabled која прима еден аргумент ( true - доколку сакаме да се прикажат копцињата, а во спротивно прима false ).
 
 	public void Enabled(bool b)
 	{
@@ -114,6 +114,16 @@ private void DrawTimer_Tick(object sender, EventArgs e)
             pbStartBackgrounf.Enabled = b;
         }
 
+Исто така креираме функција GameOver() која што ги запира сите тајмери.
+
+	public void GameOver()
+        {
+            MoveTimer.Stop();
+            NewRockTimer.Stop();
+            DrawTimer.Stop();
+            CoinsTimer.Start();
+            CloudTimer.Stop();
+        }
         
         
 Bullet    - класа за куршумот кој што се имплементира во класата  Plane 
