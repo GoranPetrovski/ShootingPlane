@@ -8,11 +8,10 @@ ShootingPlane
 Кодот на мојата игра се состои од неколку класи ( Bullet, Cloud, Coins, Explode, Plane, Rock) кои наследуваат од класата  MovingObject. Од класата MovingObject останатите класи наследуваат 
 методите  Draw(Graphics  g) , Collisision(int x, int y, int width, int height). 
 
-private void DrawTimer_Tick(object sender, EventArgs e)
+	private void DrawTimer_Tick(object sender, EventArgs e)
         {
             g.Clear(Color.LightBlue);
             plane.Draw(g);
-
             foreach (Rock r in rocks)
             {
                 r.speed +=3  ;
@@ -28,14 +27,10 @@ private void DrawTimer_Tick(object sender, EventArgs e)
                         r.Y = -100;
                     }
                 }
-                
                 if(plane.Collisision(r.X,r.Y,r.Width,r.Height) || plane.Y > this.Height || plane.Y < -9){
-
-                    
                     lbYourScore.Text = "GAME OVER \n Your score is " + points + " points";
                     lbYourScore.Visible = true;
                     GameOver();
-
                     sound.playGameOverMusic();
                     if (Score.Count <= 2)
                     {
@@ -46,15 +41,12 @@ private void DrawTimer_Tick(object sender, EventArgs e)
                         Score.RemoveAt(0);
                         Score.Add(points);
                     }   
-
                     str = "";
                     Enabled(true);
                     lbNumPoints.Visible = false;
-                  
                 }
                 r.Draw(g);
             }
-
             foreach (Coins c in coins)
             {
                 c.speed += 1;
@@ -67,18 +59,14 @@ private void DrawTimer_Tick(object sender, EventArgs e)
                    
                 }
                 c.Draw(g);
-
             }
-            
             foreach (Cloud c in clouds)
             {
-
                 c.move();
                 if (plane.bullet.Collisision(c.X, c.Y, c.Width, c.Height))
                 {
                     c.X = -10;
                     c.Y = -10;
-
                     if (puka)
                     {
                         points += 10;
@@ -86,18 +74,13 @@ private void DrawTimer_Tick(object sender, EventArgs e)
                 }
                 c.Draw(g);
             }
-            
-
             if (puka)
             {
                 plane.bullet.Y += 3;
                 plane.bullet.moveRock();
                 plane.Fire(g, plane.bullet);
             }
-            
-
             lbNumPoints.Text = points.ToString();
-
         }
         
 Со помош на тајмерот Draw се исцртуваат сите ојекти од класата при тоа користам променлива points која ми ги чува освоените поени, и подоцна се прикажува во лабелата lbNumPoints. За потребите на тајмерот имам имплементирано свои функции како Enabled која прима еден аргумент ( true - доколку сакаме да се прикажат копцињата, а во спротивно прима false ).
