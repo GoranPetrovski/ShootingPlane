@@ -99,6 +99,23 @@ private void DrawTimer_Tick(object sender, EventArgs e)
             lbNumPoints.Text = points.ToString();
 
         }
+        
+Со помош на тајмерот Draw се исцртуваат сите ојекти од класата при тоа користам променлива points која ми ги чува освоените поени, и подоцна се прикажува во лабелата lbNumPoints. За потребите на тајмерот имам имплементирано свои функции како Enabled:
+
+	public void Enabled(bool b)
+	{
+            btnStart.Visible = b;
+            btnStart.Enabled = b;
+            btnHigh.Visible = b;
+            btnHigh.Enabled = b;
+            btnExit.Visible = b;
+            btnExit.Enabled = b;
+            pbStartBackgrounf.Visible = b;
+            pbStartBackgrounf.Enabled = b;
+        }
+
+        
+        
 Bullet    - класа за куршумот кој што се имплементира во класата  Plane 
 Cloud - класа за облаците, за која во главната форма се чува низа од оваа класа
 Coins - во главната форма се чува листа од оваа класа
